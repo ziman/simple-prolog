@@ -3,7 +3,7 @@ import Control.Arrow
 import Control.Monad
 import Control.Monad.Trans
 import Control.Applicative
-import System
+import System.Environment
 import System.IO
 import System.Console.Haskeline hiding (catch)
 import Text.Parsec
