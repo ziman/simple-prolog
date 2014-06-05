@@ -5,6 +5,7 @@ import Control.Monad.Trans
 import Control.Applicative
 import System.Environment
 import System.IO
+import System.IO.Error
 import System.Console.Haskeline hiding (catch)
 import Text.Parsec
 
@@ -19,7 +20,7 @@ consult fn cs = do
         Left err -> putStrLn ("Parse error: " ++ show err) >> return cs
         Right cs -> return cs
   where
-    safeRead fn = readFile fn `catch` (\e -> print e >> return [])
+    safeRead fn = readFile fn `catchIOError` (\e -> print e >> return [])
 
 printResults :: [Name] -> [Subst] -> IO ()
 printResults _ [] = putStrLn "No."
